@@ -1,0 +1,4 @@
+---
+flannel_version: '0.5.5'
+flannel_platform : 'linux-amd64'
+flannel_mirror: 'http://github.com/coreos/flannel/releases/download'
