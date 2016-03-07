@@ -1,13 +1,32 @@
 ---
 - name: download flannel
   environment: proxy_env
-  get_url: url={{ flannel_pkg_url }} dest=/tmp/{{ flannel_pkg }}
+  get_url: >
+    url={{flannel_pkg_url}}
+    dest=/tmp/{{flannel_pkg}}
+    owner=root
+    group=root
+    mode=644
   
 - name: unachive flannel
-  unarchive: copy=no src='/tmp/{{ flannel_pkg }}' dest=/opt
+  unarchive: >
+    copy=no
+    src=/tmp/{{flannel_pkg}}
+    dest=/opt
+    creates=/opt/{{flannel_name}}
 
 - name: link flannel
-  file: src='/opt/{{ flannel_name }}' dest='/opt/flannel' state=link
+  file: >
+    src=/opt/{{flannel_name}}
+    dest=/opt/flannel
+    state=link
+    owner=root
+    group=root
 
 - name: include flannel in the default path...
-  copy: src='etc/profile.d/flannel.sh' dest='/etc/profile.d/flannel.sh' mode=644
+  copy: >
+    src=etc/profile.d/flannel.sh
+    dest=/etc/profile.d/flannel.sh
+    owner=root
+    group=root
+    mode=644
