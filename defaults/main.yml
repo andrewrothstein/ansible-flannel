@@ -1,6 +1,8 @@
 ---
-flannel_version: v0.6.2
-flannel_platform : linux-amd64
+flannel_version: v0.7.0
+flannel_platform : amd64
 flannel_mirror: https://github.com/coreos/flannel/releases/download
 flannel_install_dir: /usr/local/bin
 flannel_download_timeout_seconds: 600
+flannel_checksums:
+  amd64: sha256:d2c62c1622f7bfa424348c0bf1d92fcec649778da12c16bde5be122a352461e3

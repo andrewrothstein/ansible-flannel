@@ -1,7 +1,7 @@
 andrewrothstein.flannel
 =========
 
-Role to install flannel
+Role to install [flannel](https://github.com/coreos/flannel)
 
 Requirements
 ------------
@@ -21,9 +21,11 @@ See [meta/main.yml](meta/main.yml)
 Example Playbook
 ----------------
 
-    - hosts: servers
-      roles:
-         - andrewrothstein.flannel
+```yml
+- hosts: servers
+  roles:
+    - andrewrothstein.flannel
+```
 
 License
 -------
@@ -33,4 +35,4 @@ MIT
 Author Information
 ------------------
 
-Andrew Rothstein andrew.rothstein@gmail.com
+Andrew Rothstein <andrew.rothstein@gmail.com>

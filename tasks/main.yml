@@ -2,33 +2,17 @@
 - name: download flannel
   become: yes
   become_user: root
-  get_url: >
-    url={{flannel_pkg_url}}
-    dest=/tmp/{{flannel_pkg}}
-    mode=0644
-    timeout={{flannel_download_timeout_seconds}}
-
-- name: make install directory
-  become: yes
-  become_user: root
-  file: >-
-    path={{flannel_install_dir}}/{{flannel_name}}
-    state=directory
-    mode=0755
-    
-- name: unachive flannel
-  become: yes
-  become_user: root
-  unarchive: >
-    copy=no
-    src=/tmp/{{flannel_pkg}}
-    dest={{flannel_install_dir}}/{{flannel_name}}
-    creates={{flannel_install_dir}}/{{flannel_name}}/flanneld
+  get_url:
+    url: '{{flannel_url}}'
+    dest: '{{flannel_install_dir}}/{{flannel_target}}'
+    mode: '0755'
+    timeout: '{{flannel_download_timeout_seconds}}'
+    checksum: '{{flannel_checksum}}'
 
 - name: link flanneld
   become: yes
   become_user: root
-  file: >
-    src={{flannel_install_dir}}/{{flannel_name}}/flanneld
-    dest={{flannel_install_dir}}/flanneld
-    state=link
+  file:
+    src: '{{flannel_install_dir}}/{{flannel_target}}'
+    dest: '{{flannel_install_dir}}/flanneld'
+    state: link

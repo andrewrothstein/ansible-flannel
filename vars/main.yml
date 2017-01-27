@@ -1,4 +1,5 @@
 ---
-flannel_name : 'flannel-{{flannel_version}}'
-flannel_pkg : '{{flannel_name}}-{{flannel_platform}}.tar.gz'
-flannel_pkg_url : '{{flannel_mirror}}/{{flannel_version}}/{{flannel_pkg}}'
+flannel_upstream : flanneld-{{flannel_platform}}
+flannel_url : '{{flannel_mirror}}/{{flannel_version}}/{{flannel_upstream}}'
+flannel_target: flanneld-{{flannel_version}}-{{flannel_platform}}
+flannel_checksum: '{{flannel_checksums[flannel_platform]}}'
