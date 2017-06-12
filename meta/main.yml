@@ -22,7 +22,6 @@ galaxy_info:
     - name: Alpine
       versions:
         - all
-
   galaxy_tags:
     - development
 

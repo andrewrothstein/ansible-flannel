@@ -5,7 +5,7 @@
   get_url:
     url: '{{flannel_url}}'
     dest: '{{flannel_install_dir}}/{{flannel_target}}'
-    mode: '0755'
+    mode: 0755
     timeout: '{{flannel_download_timeout_seconds}}'
     checksum: '{{flannel_checksum}}'
 
