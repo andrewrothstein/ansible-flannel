@@ -2,7 +2,7 @@ andrewrothstein.flannel
 =========
 [![Build Status](https://travis-ci.org/andrewrothstein/ansible-flannel.svg?branch=master)](https://travis-ci.org/andrewrothstein/ansible-flannel)
 
-Installs install [flannel](https://github.com/coreos/flannel)
+Installs [flannel](https://github.com/coreos/flannel)
 
 Requirements
 ------------
