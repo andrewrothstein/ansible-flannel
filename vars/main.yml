@@ -1,5 +1,8 @@
 ---
-flannel_upstream : flanneld-{{flannel_platform}}
-flannel_url : '{{flannel_mirror}}/{{flannel_version}}/{{flannel_upstream}}'
-flannel_target: flanneld-{{flannel_version}}-{{flannel_platform}}
+flannel_name: flannel-{{flannel_version}}-{{flannel_platform}}
+flannel_tgz : '{{flannel_name}}.tar.gz'
+
+flannel_tgz_url : '{{flannel_mirror}}/{{flannel_version}}/{{flannel_tgz}}'
 flannel_checksum: '{{flannel_checksums[flannel_platform]}}'
+
+flannel_install_dir: '{{flannel_parent_install_dir}}/{{flannel_name}}'
