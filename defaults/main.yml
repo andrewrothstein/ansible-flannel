@@ -1,12 +1,15 @@
 ---
-flannel_version: v0.8.0
+flannel_version: v0.9.1
 flannel_platform : linux-amd64
 flannel_mirror: https://github.com/coreos/flannel/releases/download
-# https://github.com/coreos/flannel/releases/download/v0.8.0/flannel-v0.8.0-linux-amd64.tar.gz
 
 flannel_parent_install_dir: /usr/local
 flannel_download_timeout_seconds: 600
 flannel_checksums:
-  linux-amd64: sha256:320003c49b784260d830aa66c79de40805f6b86bb02a2158c96e6a2a55d0826b
+  v0.8.0:
+    # https://github.com/coreos/flannel/releases/download/v0.8.0/flannel-v0.8.0-linux-amd64.tar.gz
+    linux-amd64: sha256:320003c49b784260d830aa66c79de40805f6b86bb02a2158c96e6a2a55d0826b
+  v0.9.1:
+    # https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-v0.9.1-linux-amd64.tar.gz
+    linux-amd64: sha256:9ac7acc3b368a5a86751438c97b9b4dd7d36f404041ae3fbaabd24eb4d4a3347
 
-flannel_cleanup: False

@@ -1,30 +1,43 @@
 ---
-- name: make install dir...
+- name: check for flannel installation
   become: yes
-  become_user: root
-  file:
+  stat:
     path: '{{flannel_install_dir}}'
-    state: directory
-    mode: 0755
-
-- name: download flannel archive...
-  become: yes
-  become_user: root
-  get_url:
-    url: '{{flannel_tgz_url}}'
-    dest: /tmp/{{flannel_tgz}}
-    mode: 0644
-    timeout: '{{flannel_download_timeout_seconds}}'
-    checksum: '{{flannel_checksum}}'
-
-- name: unarchive...
-  become: yes
-  become_user: root
-  unarchive:
-    remote_src: yes
-    src: /tmp/{{flannel_tgz}}
-    dest: '{{flannel_install_dir}}'
-    creates: '{{flannel_install_dir}}/flanneld'
+  changed_when: false
+  register: flannel_binary
+- when: not flannel_binary.stat.exists
+  block:
+    - name: make install dir...
+      become: yes
+      become_user: root
+      file:
+        path: '{{flannel_install_dir}}'
+        state: directory
+        mode: 0755
+    - name: download flannel archive...
+      become: yes
+      become_user: root
+      get_url:
+        url: '{{flannel_tgz_url}}'
+        dest: /tmp/{{flannel_tgz}}
+        mode: 0644
+        timeout: '{{flannel_download_timeout_seconds}}'
+        checksum: '{{flannel_checksum}}'
+    - name: unarchive...
+      become: yes
+      become_user: root
+      unarchive:
+        remote_src: yes
+        src: /tmp/{{flannel_tgz}}
+        dest: '{{flannel_install_dir}}'
+        creates: '{{flannel_install_dir}}/flanneld'
+  always:
+    - name: cleanup...
+      become: yes
+      become_user: root
+      file:
+        path: /tmp/{{flannel_tgz}}
+        state: absent
 
 - name: link binaries...
   become: yes
@@ -37,10 +50,3 @@
     dest: '{{flannel_parent_install_dir}}/bin/{{item}}'
     state: link
 
-- name: cleanup...
-  become: yes
-  become_user: root
-  when: flannel_cleanup
-  file:
-    path: /tmp/{{flannel_tgz}}
-    state: absent
