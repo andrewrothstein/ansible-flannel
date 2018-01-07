@@ -11,5 +11,6 @@ flannel_checksums:
     linux-amd64: sha256:320003c49b784260d830aa66c79de40805f6b86bb02a2158c96e6a2a55d0826b
   v0.9.1:
     # https://github.com/coreos/flannel/releases/download/v0.9.1/flannel-v0.9.1-linux-amd64.tar.gz
-    linux-amd64: sha256:9ac7acc3b368a5a86751438c97b9b4dd7d36f404041ae3fbaabd24eb4d4a3347
+    linux-amd64: sha256:a05b34a0dfa1ffbe5f4d4007e66476400d31eab9a4155c46573a649f0e8f4731
+    linux-arm64: sha256:9ac7acc3b368a5a86751438c97b9b4dd7d36f404041ae3fbaabd24eb4d4a3347
 
