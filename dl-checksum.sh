@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-VER=v0.10.0
+VER=v0.11.0
 DIR=~/Downloads
 MIRROR=https://github.com/coreos/flannel/releases/download
 for PLATFORM in linux-amd64 linux-arm linux-arm64 linux-ppc64le windows-amd64

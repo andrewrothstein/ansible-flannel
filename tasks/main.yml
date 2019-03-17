@@ -2,7 +2,7 @@
 - name: check for flannel installation
   become: yes
   stat:
-    path: '{{flannel_install_dir}}'
+    path: '{{ flannel_install_dir }}'
   changed_when: false
   register: flannel_binary
 - when: not flannel_binary.stat.exists
@@ -11,32 +11,32 @@
       become: yes
       become_user: root
       file:
-        path: '{{flannel_install_dir}}'
+        path: '{{ flannel_install_dir }}'
         state: directory
         mode: 0755
     - name: download flannel archive...
       become: yes
       become_user: root
       get_url:
-        url: '{{flannel_tgz_url}}'
-        dest: /tmp/{{flannel_tgz}}
+        url: '{{ flannel_tgz_url }}'
+        dest: /tmp/{{ flannel_tgz }}
         mode: 0644
-        timeout: '{{flannel_download_timeout_seconds}}'
-        checksum: '{{flannel_checksum}}'
+        timeout: '{{ flannel_download_timeout_seconds }}'
+        checksum: '{{ flannel_checksum }}'
     - name: unarchive...
       become: yes
       become_user: root
       unarchive:
         remote_src: yes
-        src: /tmp/{{flannel_tgz}}
-        dest: '{{flannel_install_dir}}'
-        creates: '{{flannel_install_dir}}/flanneld'
+        src: /tmp/{{ flannel_tgz }}
+        dest: '{{ flannel_install_dir }}'
+        creates: '{{ flannel_install_dir }}/flanneld'
   always:
     - name: cleanup...
       become: yes
       become_user: root
       file:
-        path: /tmp/{{flannel_tgz}}
+        path: /tmp/{{ flannel_tgz }}
         state: absent
 
 - name: link binaries...
@@ -46,7 +46,7 @@
     - flanneld
     - mk-docker-opts.sh
   file:
-    src: '{{flannel_install_dir}}/{{item}}'
-    dest: '{{flannel_parent_install_dir}}/bin/{{item}}'
+    src: '{{ flannel_install_dir }}/{{ item }}'
+    dest: '{{ flannel_parent_install_dir }}/bin/{{ item }}'
     state: link
 
