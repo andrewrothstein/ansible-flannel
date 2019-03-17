@@ -49,4 +49,3 @@
     src: '{{ flannel_install_dir }}/{{ item }}'
     dest: '{{ flannel_parent_install_dir }}/bin/{{ item }}'
     state: link
-

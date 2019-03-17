@@ -1,6 +1,6 @@
 ---
 flannel_version: v0.11.0
-flannel_platform : linux-amd64
+flannel_platform: linux-amd64
 flannel_mirror: https://github.com/coreos/flannel/releases/download
 
 flannel_parent_install_dir: /usr/local
@@ -25,4 +25,3 @@ flannel_checksums:
     linux-arm: sha256:89f3b283ac5479c5a1f400d094eeadc4104a1d7eba88aed74c60c2b3bfeef0da
     linux-ppc64le: sha256:e87cd149f8057b691a6d48dfe863d737579778a92b7e237bd637019c5e3d58f0
     windows-amd64: sha256:33203e821a40770c45adf589f28a001d3e85fbea820bc28b7cc7469bf8458899
-
