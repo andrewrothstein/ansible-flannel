@@ -46,4 +46,3 @@ flannel_checksums:
     linux-ppc64le: sha256:e87cd149f8057b691a6d48dfe863d737579778a92b7e237bd637019c5e3d58f0
     # https://github.com/coreos/flannel/releases/download/v0.11.0/flannel-v0.11.0-windows-amd64.tar.gz
     windows-amd64: sha256:33203e821a40770c45adf589f28a001d3e85fbea820bc28b7cc7469bf8458899
-
