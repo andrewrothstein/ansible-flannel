@@ -1,11 +1,28 @@
 #!/usr/bin/env sh
-VER=v0.11.0
+VER=${1:-v0.11.0}
 DIR=~/Downloads
 MIRROR=https://github.com/coreos/flannel/releases/download
-for PLATFORM in linux-amd64 linux-arm linux-arm64 linux-ppc64le windows-amd64
-do
-    DIST=flannel-$VER-$PLATFORM.tar.gz
-    wget -O $DIR/$DIST $MIRROR/$VER/$DIST
-done
-sha256sum $DIR/flannel-$VER-*.tar.gz
-#shasum -a 256 $DIR/flannel-*-$VER
+
+dl () {
+    local os=$1
+    local arch=$2
+    local platform=${os}-${arch}
+    local file=flannel-$VER-$platform.tar.gz
+    local lfile=$DIR/$file
+    local url=$MIRROR/$VER/$file
+    if [ ! -e $lfile ];
+    then
+        wget -q -O $lfile $url
+    fi
+
+    printf "    # %s\n" $url
+    printf "    %s: sha256:%s\n" $platform $(sha256sum $lfile | awk '{print $1}')
+
+}
+
+printf "  %s:\n" $VER
+dl linux amd64
+dl linux arm
+dl linux arm64
+dl linux ppc64le
+dl windows amd64
