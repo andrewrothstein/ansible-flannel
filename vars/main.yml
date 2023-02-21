@@ -1,8 +1,15 @@
 ---
+flannel_os: '{{ ansible_system | lower }}'
+flannel_arch: '{{ flannel_arch_map[ansible_architecture] }}'
+flannel_platform: '{{ flannel_os }}-{{ flannel_arch }}'
+
 flannel_name: flannel-{{ flannel_version }}-{{ flannel_platform }}
 flannel_tgz: '{{ flannel_name }}.tar.gz'
+flannel_tmp_tgz: /tmp/{{ flannel_tgz }}
 
 flannel_tgz_url: '{{ flannel_mirror }}/{{ flannel_version }}/{{ flannel_tgz }}'
 flannel_checksum: '{{ flannel_checksums[flannel_version][flannel_platform] }}'
 
 flannel_install_dir: '{{ flannel_parent_install_dir }}/{{ flannel_name }}'
+flannel_exe: '{{ flannel_install_dir }}/flanneld'
+flannel_link: '{{ flannel_parent_install_dir }}/bin/flanneld'

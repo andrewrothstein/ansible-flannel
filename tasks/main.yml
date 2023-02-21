@@ -1,51 +1,50 @@
 ---
-- name: check for flannel installation
-  become: yes
+- include_role:
+    name: andrewrothstein.unarchive-deps
+- name: check for flannel installation at {{ flannel_exe }}
+  become: true
   stat:
-    path: '{{ flannel_install_dir }}'
+    path: '{{ flannel_exe }}'
   changed_when: false
   register: flannel_binary
 - when: not flannel_binary.stat.exists
   block:
-    - name: make install dir...
-      become: yes
+    - name: download {{ flannel_tgz_url }} to {{ flannel_tmp_tgz }}
+      become: true
+      become_user: root
+      get_url:
+        url: '{{ flannel_tgz_url }}'
+        dest: '{{ flannel_tmp_tgz }}'
+        mode: 0644
+        timeout: '{{ flannel_download_timeout_seconds }}'
+        checksum: '{{ flannel_checksum }}'
+    - name: mkdir {{ flannel_install_dir }}
+      become: true
       become_user: root
       file:
         path: '{{ flannel_install_dir }}'
         state: directory
         mode: 0755
-    - name: download flannel archive...
-      become: yes
-      become_user: root
-      get_url:
-        url: '{{ flannel_tgz_url }}'
-        dest: /tmp/{{ flannel_tgz }}
-        mode: 0644
-        timeout: '{{ flannel_download_timeout_seconds }}'
-        checksum: '{{ flannel_checksum }}'
     - name: unarchive...
-      become: yes
+      become: true
       become_user: root
       unarchive:
-        remote_src: yes
-        src: /tmp/{{ flannel_tgz }}
+        remote_src: true
+        src: '{{ flannel_tmp_tgz }}'
         dest: '{{ flannel_install_dir }}'
-        creates: '{{ flannel_install_dir }}/flanneld'
+        creates: '{{ flannel_exe }}'
   always:
-    - name: cleanup...
-      become: yes
+    - name: rm {{ flannel_tmp_tgz }}
+      become: true
       become_user: root
       file:
-        path: /tmp/{{ flannel_tgz }}
+        path: '{{ flannel_tmp_tgz }}'
         state: absent
 
-- name: link binaries...
-  become: yes
+- name: linking {{ flannel_link }} to {{ flannel_exe }}
+  become: true
   become_user: root
-  with_items:
-    - flanneld
-    - mk-docker-opts.sh
   file:
-    src: '{{ flannel_install_dir }}/{{ item }}'
-    dest: '{{ flannel_parent_install_dir }}/bin/{{ item }}'
+    src: '{{ flannel_exe }}'
+    dest: '{{ flannel_link }}'
     state: link

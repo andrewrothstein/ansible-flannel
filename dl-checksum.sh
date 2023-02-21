@@ -1,18 +1,20 @@
 #!/usr/bin/env sh
-VER=${1:-v0.11.0}
+set -e
 DIR=~/Downloads
 MIRROR=https://github.com/coreos/flannel/releases/download
 
-dl () {
-    local os=$1
-    local arch=$2
-    local platform=${os}-${arch}
-    local file=flannel-$VER-$platform.tar.gz
+dl() {
+    local ver=$1
+    local os=$2
+    local arch=$3
+    local platform="${os}-${arch}"
+    local file="flannel-${ver}-${platform}.tar.gz"
     local lfile=$DIR/$file
-    local url=$MIRROR/$VER/$file
+    # https://github.com/flannel-io/flannel/releases/download/v0.21.2/flannel-v0.21.2-linux-amd64.tar.gz
+    local url=$MIRROR/$ver/$file
     if [ ! -e $lfile ];
     then
-        wget -q -O $lfile $url
+        curl -sSLf -o $lfile $url
     fi
 
     printf "    # %s\n" $url
@@ -20,9 +22,17 @@ dl () {
 
 }
 
-printf "  %s:\n" $VER
-dl linux amd64
-dl linux arm
-dl linux arm64
-dl linux ppc64le
-dl windows amd64
+dl_ver() {
+    local ver=$1
+    printf "  %s:\n" $ver
+    dl $ver linux amd64
+    dl $ver linux arm
+    dl $ver linux arm64
+    dl $ver linux mips64le
+    dl $ver linux ppc64le
+    dl $ver linux s390x
+    dl $ver windows amd64
+
+}
+
+dl_ver ${1:-v0.21.2}

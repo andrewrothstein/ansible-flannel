@@ -1,0 +1,57 @@
+---
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        cache: pip
+        python-version: ${{ matrix.python-version }}
+    - name: Install Python dependencies
+      run: 'python -m pip install --upgrade pip
+
+        if [ -f requirements.txt ]; then python -m pip install -r requirements.txt;
+        fi'
+    - name: 'dcb #ftw'
+      run: dcb --upstreamregistry ghcr.io --upstreamgroup andrewrothstein --upstreamapp
+        docker-ansible --targetregistry ghcr.io --targetuser ${{ github.actor }} --targetpwd
+        ${{ github.token }} --snippet from.j2 ansible-test-role.j2 --pullall --writeall
+        --buildall --pushall --alltags ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - alpine_3.10
+        - alpine_3.3
+        - alpine_3.4
+        - alpine_3.5
+        - alpine_3.6
+        - alpine_3.7
+        - alpine_3.8
+        - alpine_3.9
+        - alpine_edge
+        - archlinux_latest
+        - centos_7
+        - centos_8
+        - debian_buster
+        - debian_jessie
+        - debian_stretch
+        - fedora_23
+        - fedora_24
+        - fedora_25
+        - fedora_26
+        - fedora_27
+        - fedora_28
+        - fedora_29
+        - fedora_30
+        - fedora_31
+        - fedora_32
+        - ubi8_8.0
+        - ubuntu_bionic
+        - ubuntu_xenial
+        python-version:
+        - '3.10'
+name: dcb
+'on':
+- push
