@@ -1,5 +1,11 @@
 ---
 - hosts: all
+  roles:
+    - role: '{{ playbook_dir }}'
   tasks:
-    - include_role:
-        name: '{{ playbook_dir }}'
+    - command: /usr/local/bin/flanneld --version
+      register: flanneld_test_output
+    - name: /usr/local/bin/flanneld --version
+      debug:
+        msg: '{{ flanneld_test_output.stderr }}'
+

@@ -1,6 +1,6 @@
 ---
 - include_role:
-    name: andrewrothstein.unarchive-deps
+    name: andrewrothstein.unarchivedeps
 - name: check for flannel installation at {{ flannel_exe }}
   become: true
   stat:
