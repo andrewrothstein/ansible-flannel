@@ -1,7 +1,7 @@
 ---
-- include_role:
+- ansible.builtin.include_role:
     name: andrewrothstein.unarchivedeps
-- name: check for flannel installation at {{ flannel_exe }}
+- name: Check for flannel installation at {{ flannel_exe }}
   become: true
   stat:
     path: '{{ flannel_exe }}'
@@ -9,42 +9,42 @@
   register: flannel_binary
 - when: not flannel_binary.stat.exists
   block:
-    - name: download {{ flannel_tgz_url }} to {{ flannel_tmp_tgz }}
+    - name: Download {{ flannel_tgz_url }} to {{ flannel_tmp_tgz }}
       become: true
       become_user: root
-      get_url:
+      ansible.builtin.get_url:
         url: '{{ flannel_tgz_url }}'
         dest: '{{ flannel_tmp_tgz }}'
         mode: 0644
         timeout: '{{ flannel_download_timeout_seconds }}'
         checksum: '{{ flannel_checksum }}'
-    - name: mkdir {{ flannel_install_dir }}
+    - name: Mkdir {{ flannel_install_dir }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ flannel_install_dir }}'
         state: directory
         mode: 0755
-    - name: unarchive...
+    - name: Unarchive...
       become: true
       become_user: root
-      unarchive:
+      ansible.builtin.unarchive:
         remote_src: true
         src: '{{ flannel_tmp_tgz }}'
         dest: '{{ flannel_install_dir }}'
         creates: '{{ flannel_exe }}'
   always:
-    - name: rm {{ flannel_tmp_tgz }}
+    - name: Rm {{ flannel_tmp_tgz }}
       become: true
       become_user: root
-      file:
+      ansible.builtin.file:
         path: '{{ flannel_tmp_tgz }}'
         state: absent
 
 - name: linking {{ flannel_link }} to {{ flannel_exe }}
   become: true
   become_user: root
-  file:
+  ansible.builtin.file:
     src: '{{ flannel_exe }}'
     dest: '{{ flannel_link }}'
     state: link

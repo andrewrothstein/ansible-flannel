@@ -1,5 +1,5 @@
 ---
-flannel_version: v0.22.1
+flannel_version: v0.23.0
 flannel_arch_map:
   aarch64: arm64
   arm64: arm64
@@ -85,3 +85,18 @@ flannel_checksums:
     linux-s390x: sha256:7d43d93e8fae81c258d1f992e022e037ec7ac9fa58fe07cfb6e55b182987ea82
     # https://github.com/coreos/flannel/releases/download/v0.22.1/flannel-v0.22.1-windows-amd64.tar.gz
     windows-amd64: sha256:4364cd3448ce8e44dbd1a94046f3760f02babaf095ec6f3dc9612ca0bfe8d3b4
+  v0.23.0:
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-linux-amd64.tar.gz
+    linux-amd64: sha256:0e37ccb5e4f989589ff29b83b298b175d1e5814e33a30e5d722ca67a395ada59
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-linux-arm.tar.gz
+    linux-arm: sha256:7e181a5fdf02c952da5684abdcbc9206fc15eed788a394c9d2e993ecc41bb2b2
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-linux-arm64.tar.gz
+    linux-arm64: sha256:1595ffc4d0c84a6e4aab9fac5b29e7beacdab2f202465ead5cd9c91315b62253
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-linux-mips64le.tar.gz
+    linux-mips64le: sha256:2268105b16fcc7b4a46e905264d21dbd3182c564c8f4a80241e9c8455b4aa303
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-linux-ppc64le.tar.gz
+    linux-ppc64le: sha256:90e4e8d8bf53a0c0638480da3ef1a18657c65242196f083896a7e3cb3385721b
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-linux-s390x.tar.gz
+    linux-s390x: sha256:cd98b32e3dd12c95f5dd1e41c32a207d4b2d08429fddd7ebf8b80dd519a09f91
+    # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-windows-amd64.tar.gz
+    windows-amd64: sha256:16865d4c7b476f576bfe36c2f220d17a4f1323f4578169b8933881426f1fc92f
