@@ -10,7 +10,7 @@ flannel_arch_map:
   s390x: s390x
   x86_64: amd64
 flannel_platform: linux-amd64
-flannel_mirror: https://github.com/coreos/flannel/releases/download
+flannel_mirror: https://github.com/flannel-io/flannel/releases/download
 
 flannel_parent_install_dir: /usr/local
 flannel_download_timeout_seconds: 600
@@ -100,3 +100,18 @@ flannel_checksums:
     linux-s390x: sha256:cd98b32e3dd12c95f5dd1e41c32a207d4b2d08429fddd7ebf8b80dd519a09f91
     # https://github.com/coreos/flannel/releases/download/v0.23.0/flannel-v0.23.0-windows-amd64.tar.gz
     windows-amd64: sha256:16865d4c7b476f576bfe36c2f220d17a4f1323f4578169b8933881426f1fc92f
+  v0.24.3:
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-linux-amd64.tar.gz
+    linux-amd64: sha256:0a1d1a093e7d2237f605ccab4e76fedb00e75962280c62ee55ec330b68a6691b
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-linux-arm.tar.gz
+    linux-arm: sha256:0d5c76535e81522769f7c24cd960c29e91c5b6f5dfd2980240c960bec0adbf44
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-linux-arm64.tar.gz
+    linux-arm64: sha256:953c60dfb27856065a131de1e7945a15d2e14c833925be4b624875882339a08d
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-linux-riscv64.tar.gz
+    linux-riscv64: sha256:e553e7343e84ed3c057fad357dea1583377492c972fe6111317f7403b31b9576
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-linux-ppc64le.tar.gz
+    linux-ppc64le: sha256:962c6548d8070ce3021f17eeb12264d75df70207a344091c00224e603343e156
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-linux-s390x.tar.gz
+    linux-s390x: sha256:3a645538cd09dfbfb9e5a222c2b9668a16584c09569102ed3efd03184fdbb685
+    # https://github.com/flannel-io/flannel/releases/download/v0.24.3/flannel-v0.24.3-windows-amd64.tar.gz
+    windows-amd64: sha256:d9888b46cc62387df7127141677f51f2f0480e8d8d166472ebfea91567bc68d7
